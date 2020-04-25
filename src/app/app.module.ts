@@ -1,0 +1,31 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { TituloPrincipalComponent } from './main-components/titulo-principal/titulo-principal.component';
+import { TercerComponenteComponent } from './main-components//tercer-componente/tercer-componente.component';
+import { AppRoutingModule} from './app-routing.module';
+import { PageNotFoundComponent } from './main-components/page-not-found/page-not-found.component';
+import { AlumnosModule } from './modules/alumnos/alumnos.module';
+import { ProfesoresModule } from './modules/profesores/profesores.module';
+import { SalonesModule } from './modules/salones/salones.module';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    TituloPrincipalComponent,
+    TercerComponenteComponent,
+    PageNotFoundComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AlumnosModule,
+    ProfesoresModule,
+    SalonesModule
+
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

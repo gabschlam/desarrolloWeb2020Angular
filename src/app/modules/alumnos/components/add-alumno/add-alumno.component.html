@@ -1,0 +1,6 @@
+<h1>Estoy en el formulario de añadir alumno</h1>
+<p>Hola {{nombreAlumno}}!</p>
+<div *ngFor="let alumno of alumnos">
+  <p>{{alumno.matricula}} - {{alumno.nombre}}</p>
+</div>
+<button (click)="sumar()" class="btn btn-primary"> Sumar</button> 
