@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './main-components/page-not-found/page-not
 import { AlumnosModule } from './modules/alumnos/alumnos.module';
 import { ProfesoresModule } from './modules/profesores/profesores.module';
 import { SalonesModule } from './modules/salones/salones.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SalonesModule } from './modules/salones/salones.module';
     AppRoutingModule,
     AlumnosModule,
     ProfesoresModule,
-    SalonesModule
+    SalonesModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
