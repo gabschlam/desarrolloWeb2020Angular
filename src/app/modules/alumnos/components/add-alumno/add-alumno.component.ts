@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Alumno } from '../../models/alumno';
+import { AlumnoService } from '../../services/alumno.service';
 
 @Component({
   selector: 'app-add-alumno',
@@ -8,11 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class AddAlumnoComponent implements OnInit {
   nombreAlumno:string = "Gabriel Schlam"
 
-  alumnos = [{nombre:"Juan", matricula:"1234"}, {nombre:"Gabriel", matricula:"3456"}, {nombre:"Pepe", matricula:"4355"}]
+  alumnos: Alumno[];
 
-  constructor() { }
+  constructor(public alumnosService:AlumnoService) { }
 
   ngOnInit(): void {
+    this.obtenerAlumnos();
+  }
+
+  obtenerAlumnos(){
+    this.alumnosService.getAlumnos().subscribe(alumnos => {
+      this.alumnos = alumnos;
+
+    })
   }
 
   sumar(){
