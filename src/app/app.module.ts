@@ -11,6 +11,15 @@ import { ProfesoresModule } from './modules/profesores/profesores.module';
 import { SalonesModule } from './modules/salones/salones.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {registerLocaleData} from '@angular/common';
+import localeMX from '@angular/common/locales/es-MX';
+import localeBr from '@angular/common/locales/pt';
+import localeUS from '@angular/common/locales/en';
+
+registerLocaleData(localeMX, 'es-MX')
+registerLocaleData(localeBr, 'pt')
+registerLocaleData(localeUS, 'en')
+
 @NgModule({
   declarations: [
     AppComponent,
