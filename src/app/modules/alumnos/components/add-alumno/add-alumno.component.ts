@@ -19,8 +19,11 @@ export class AddAlumnoComponent implements OnInit {
   }
 
   obtenerAlumnos(){
-    this.alumnosService.getAlumnos().subscribe(alumnos => {
-      this.alumnos = alumnos;
+    this.alumnos = [];
+    console.log("llegue")
+    this.alumnosService.getAlumnos().subscribe(data => {
+      console.log("alumnos" + data);
+      this.alumnos = data;
 
     })
   }

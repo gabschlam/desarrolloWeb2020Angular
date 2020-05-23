@@ -10,6 +10,7 @@ import { AlumnosModule } from './modules/alumnos/alumnos.module';
 import { ProfesoresModule } from './modules/profesores/profesores.module';
 import { SalonesModule } from './modules/salones/salones.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule} from '@angular/common/http';
 
 import {registerLocaleData} from '@angular/common';
 import localeMX from '@angular/common/locales/es-MX';
@@ -33,7 +34,8 @@ registerLocaleData(localeUS, 'en')
     AlumnosModule,
     ProfesoresModule,
     SalonesModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
 
   ],
   providers: [],

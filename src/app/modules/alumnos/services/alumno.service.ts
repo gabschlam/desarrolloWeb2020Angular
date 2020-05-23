@@ -1,19 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { Alumno } from '../models/alumno';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+
+import { map, catchError, tap} from 'rxjs/operators'
+const endpoint = 'http://localhost:8080/api/alumnos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumnoService {
+  constructor(private http: HttpClient) { }
 
-  getAlumnos():Observable<Alumno[]>{
-    let alumnos:Alumno[]=[new Alumno(12, "Juan", "ITC"),
-                          new Alumno(14, "Jose", "ITC"),
-                          new Alumno(15, "Susana", "ITC")];
 
-    return of(alumnos);
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type' :  'application/json'
+    })
   }
 
-  constructor() { }
+  alumnos:Alumno[];
+
+  public getAlumnos():Observable<any>{
+   return this.http.get(endpoint)
+
+  }
+
+  private extractData(res: Response) {
+    let body = res;
+    return body || { };
+  }
+
+  addAlumno(al: Alumno):void{
+    this.alumnos.push(al)
+  }
+
+  edit(al:Alumno){
+
+  }
+
 }
