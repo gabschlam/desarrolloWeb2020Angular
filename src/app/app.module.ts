@@ -17,6 +17,9 @@ import localeMX from '@angular/common/locales/es-MX';
 import localeBr from '@angular/common/locales/pt';
 import localeUS from '@angular/common/locales/en';
 
+import { NavBarComponent } from './main-components/nav-bar/nav-bar.component';
+import { PerfilComponent } from './main-components/perfil/perfil.component';
+
 registerLocaleData(localeMX, 'es-MX')
 registerLocaleData(localeBr, 'pt')
 registerLocaleData(localeUS, 'en')
@@ -26,7 +29,9 @@ registerLocaleData(localeUS, 'en')
     AppComponent,
     TituloPrincipalComponent,
     TercerComponenteComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NavBarComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
