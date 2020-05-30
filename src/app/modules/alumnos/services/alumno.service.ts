@@ -1,42 +1,65 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from "rxjs";
+import { Observable, of, throwError } from 'rxjs';
 import { Alumno } from '../models/alumno';
-import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpResponse,
+  HttpErrorResponse,
+} from '@angular/common/http';
 
-import { map, catchError, tap} from 'rxjs/operators'
-const endpoint = 'http://localhost:8080/api/alumnos';
+import { map, retry, catchError, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlumnoService {
-  constructor(private http: HttpClient) { }
-
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type' :  'application/json'
-    })
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errorsi
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 
-  alumnos:Alumno[];
+  endpoint = 'http://localhost:8080/api/alumnos';
 
-  public getAlumnos():Observable<any>{
-   return this.http.get(endpoint)
+  alumnos: Alumno[];
 
+  getAlumnos(): Observable<any> {
+    console.log('estoy en el getALumnos');
+    var headerDict = {
+      'Content-Type': 'application/json',
+      Accept: '*/*',
+      'Access-Control-Allow-Origin': '*',
+    };
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http
+      .get(this.endpoint, requestOptions)
+      .pipe(map(this.extractData), retry(3), catchError(this.handleError));
   }
 
   private extractData(res: Response) {
     let body = res;
-    return body || { };
+    return body || {};
   }
 
-  addAlumno(al: Alumno):void{
-    this.alumnos.push(al)
+  addAlumno(al: Alumno): void {
+    this.alumnos.push(al);
   }
 
-  edit(al:Alumno){
+  edit(al: Alumno) {}
 
+  constructor(private http: HttpClient) {
+    //alumno[]//file
   }
-
 }

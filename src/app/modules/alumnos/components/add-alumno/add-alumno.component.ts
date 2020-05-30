@@ -5,31 +5,26 @@ import { AlumnoService } from '../../services/alumno.service';
 @Component({
   selector: 'app-add-alumno',
   templateUrl: './add-alumno.component.html',
-  styleUrls: ['./add-alumno.component.scss']
+  styleUrls: ['./add-alumno.component.scss'],
 })
 export class AddAlumnoComponent implements OnInit {
-  nombreAlumno:string = "Gabriel Schlam"
+  nombreAlumno: string = 'Juan Velez';
 
   alumnos: Alumno[];
-
-  constructor(public alumnosService:AlumnoService) { }
+  constructor(public alumnoService: AlumnoService) {}
 
   ngOnInit(): void {
     this.obtenerAlumnos();
   }
 
-  obtenerAlumnos(){
-    this.alumnos = [];
-    console.log("llegue")
-    this.alumnosService.getAlumnos().subscribe(data => {
-      console.log("alumnos" + data);
+  obtenerAlumnos() {
+    this.alumnoService.getAlumnos().subscribe((data) => {
       this.alumnos = data;
-
-    })
+      console.log('respuesta de alumno->' + this.alumnos);
+    });
   }
 
-  sumar(){
-    this.nombreAlumno = this.nombreAlumno + "hola"
+  sumar() {
+    this.nombreAlumno = this.nombreAlumno + 'hola';
   }
-
 }
